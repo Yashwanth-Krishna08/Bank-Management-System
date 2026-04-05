@@ -53,7 +53,7 @@ The system is built using **OOP principles**, making the code modular, reusable,
 3. Compile the code:
 
    ```bash
-   g++ main.cpp account.cpp -o bank
+   bank.cpp
    ```
 
 4. Run the program:
