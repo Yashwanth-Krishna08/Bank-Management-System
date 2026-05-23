@@ -1,132 +1,174 @@
-# Bank-Management-System
-A simple bank management system in C++
-# 🏦 Banking System (C++)
+# 🏦 Bank Management System in C++
 
-A simple **Banking System** developed in **C++** that simulates basic banking operations. This project is designed to demonstrate core **Object-Oriented Programming (OOP)** concepts while implementing real-world banking logic like deposits, withdrawals, and balance tracking.
+A console-based **Bank Management System** developed using **C++** and **Object-Oriented Programming (OOP)** concepts.  
+This project allows users to manage multiple bank accounts and perform banking operations such as deposits, withdrawals, transfers, and account management through a menu-driven interface.
 
----
-
-## 📌 About the Project
-
-This project mimics the functionality of a basic net banking system. It allows users to perform multiple transactions such as depositing and withdrawing money, and checking their account balance.
-
-The system is built using **OOP principles**, making the code modular, reusable, and easy to understand. It also uses **object cloning** to handle transactions efficiently.
+The system uses **STL vectors** for dynamic account storage and demonstrates practical implementation of real-world banking logic using modular programming techniques.
 
 ---
 
-## ✨ Features
+# 📌 Features
 
-* 💰 **Deposit Money** – Add funds to your account
-* 💸 **Withdraw Money** – Withdraw funds with proper validation
-* 🔄 **Multiple Transactions** – Perform multiple operations in one session
-* 📊 **Check Balance** – View final account balance
-* 🧩 **Modular Functions** – Separate functions for each operation for easy modification
-* 🧬 **Object Cloning** – Efficient handling of account states
-
----
-
-## ⚙️ Technologies Used
-
-* **Language:** C++
-* **Concepts:**
-
-  * Object-Oriented Programming (OOP)
-  * Classes and Objects
-  * Encapsulation
-  * Function Modularity
-  * Object Cloning
+- 🏦 Create Multiple Bank Accounts
+- 💰 Deposit Money
+- 💸 Withdraw Money
+- 🔄 Transfer Money Between Accounts
+- 🔍 Search Account Using Account Number
+- 📋 Display Individual Account Details
+- 📑 Show All Accounts
+- 🧠 Dynamic Account Storage Using STL Vector
+- 📌 Menu-Driven User Interface
+- ✅ Transaction & Input Validation
 
 ---
 
-## 🚀 How to Run
+# 🛠️ Technologies Used
 
-### Prerequisites
+## Language
+- C++
 
-* C++ Compiler (e.g., g++, clang)
-
-### Steps
-
-1. Download or copy the project files
-
-2. Open terminal in the project folder
-
-3. Compile the code:
-
-   ```bash
-    g++ main.cpp account.cpp -o bank
-   ```
-
-4. Run the program:
-
-   ```bash
-   ./bank
-   ```
-
-## 🧑‍💻 Usage
-
-1. Start the program
-2. Choose the desired operation:
-
-   * Deposit
-   * Withdraw
-   * Check Balance
-3. Perform multiple transactions
-4. View your final balance at the end
+## Concepts Practiced
+- Object-Oriented Programming (OOP)
+- Classes and Objects
+- Encapsulation
+- STL Vector
+- Function Modularity
+- Searching and Record Management
+- Menu-Driven Programming
+- Banking Transaction Logic
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
-```
-net-banking-system/
+```text
+Bank-Management-System/
 │
-├── main.cpp          # Main program file
-├── account.cpp       # Account-related logic
-├── account.h         # Class definitions
-└── README.md         # Documentation
+├── bank.cpp          # Complete banking system implementation
+└── README.md         # Project documentation
 ```
 
 ---
 
-## 🛡️ Rules & Validations
+# 🚀 How to Run
 
-* ❌ Cannot withdraw more than the available balance
-* ❌ Cannot deposit invalid/negative amounts
-* ✅ Ensures safe and logical transactions
-
----
-
-## 📈 Learning Outcomes
-
-This project helped in:
-
-* Understanding the fundamentals of **OOP in C++**
-* Writing clean and modular code
-* Implementing real-world logic using programming
-* Learning about **object cloning and function design**
+## Prerequisites
+- C++ Compiler (g++, clang++, MinGW, etc.)
 
 ---
 
-## 🔮 Future Improvements
+## Compile the Program
 
-* Add file handling for data persistence
-* Implement user authentication (PIN/password)
-* Build a GUI-based version
-* Add transaction history
-
----
-
-## 🤝 Contributing
-
-Feel free to fork this project and improve it!
+```bash
+g++ bank.cpp -o bank
+```
 
 ---
 
-## 📄 License
+## Run the Program
 
-This project is for educational purposes and is open to use.
+### Linux / Mac
+```bash
+./bank
+```
+
+### Windows
+```bash
+bank.exe
+```
 
 ---
 
-⭐ If you found this project useful, consider giving it a star!
+# 🧑‍💻 Functionalities
 
+## 🏦 Account Creation
+Users can create multiple bank accounts by entering:
+- Account Number
+- Account Holder Name
+- Initial Deposit Amount
+
+---
+
+## 💰 Deposit System
+Users can deposit money into an existing account with proper validation.
+
+---
+
+## 💸 Withdrawal System
+Users can withdraw money while ensuring:
+- Sufficient balance
+- Valid withdrawal amount
+
+---
+
+## 🔄 Money Transfer
+Supports transferring money between two accounts using account numbers.
+
+---
+
+## 🔍 Account Search
+Users can search and display a specific account using the account number.
+
+---
+
+## 📋 Display All Accounts
+Displays all stored accounts with:
+- Name
+- Account Number
+- Current Balance
+
+---
+
+# 🛡️ Validations & Safety Rules
+
+- ❌ Cannot withdraw more than available balance
+- ❌ Negative deposits or withdrawals are not allowed
+- ❌ Invalid account numbers are rejected
+- ❌ Transfer to the same account is not allowed
+- ✅ Ensures safe and logical banking operations
+
+---
+
+# 🧠 Learning Outcomes
+
+This project helped in understanding:
+
+- Practical implementation of OOP in C++
+- Managing collections of objects using STL vectors
+- Building menu-driven applications
+- Implementing banking transaction systems
+- Designing modular functions
+- Record searching and account management
+- Real-world problem solving using programming
+
+---
+
+# 🔮 Future Improvements
+
+- 💾 File Handling for Permanent Data Storage
+- 🔐 Login System with PIN/Password
+- 📜 Transaction History
+- 🗑️ Delete Account Feature
+- ✏️ Update Account Details
+- 📊 Sorting Accounts by Balance or Name
+- 🖥️ GUI-Based Banking Application
+- 🌐 Database Integration
+
+---
+
+# 🤝 Contributing
+
+Contributions, improvements, and suggestions are welcome!  
+Feel free to fork this project and improve it.
+
+---
+
+# 📄 License
+
+This project is created for educational and learning purposes.
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a star on GitHub!
