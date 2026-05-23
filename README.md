@@ -1,5 +1,4 @@
-# Bank-Management-System
-A simple bank management system in C++
+
 # 🏦 Banking System (C++)
 
 A simple **Banking System** developed in **C++** that simulates basic banking operations. This project is designed to demonstrate core **Object-Oriented Programming (OOP)** concepts while implementing real-world banking logic like deposits, withdrawals, and balance tracking.
