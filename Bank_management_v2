@@ -1,0 +1,222 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include<algorithm>
+class Account 
+{
+    private:
+    int ac_no;
+    std::string name;
+    float balance;
+    public:
+    void create(std::vector<Account>& acc,Account a)
+    {
+        std::cout<<"Enter your account number : "<<std::endl;
+        std::cin>>a.ac_no;
+        std::cin.ignore();
+        std::cout<<"Enter your name : "<<std::endl;
+        getline(std::cin,a.name);
+        std::cout<<"Enter amount to be deposited to new account:"<<std::endl;
+        std::cin>>a.balance;
+        acc.push_back(a);
+    }
+    void display(std::vector<Account>& acc)
+    {
+        int n;
+        std::cout<<"Enter account number : "<<std::endl;
+        std::cin>>n;
+        for(int i =0;i<acc.size();i++)
+        {
+            if(acc[i].ac_no==n)
+            {
+                std::cout<<"Name : "<<acc[i].name<<std::endl<<"Account number : "<<acc[i].ac_no<<std::endl<<"balance : "<<acc[i].balance<<std::endl<<"------------------------------------"<<std::endl;
+            }
+        }
+    }
+    void deposite(std::vector<Account>& acc)
+    {
+        float depo;
+        int n;
+        std::cout<<"Enter account number : "<<std::endl;
+        std::cin>>n;
+        std::cout<<"Enter the amount to be deposited : "<<std::endl;
+        std::cin>>depo;
+        for(int i =0;i<acc.size();i++)
+        {
+            if(acc[i].ac_no==n)
+            {
+                if(depo>0)
+                {
+                     acc[i].balance=acc[i].balance+depo;
+                    std::cout<<depo<<" has been credited successfully"<<std::endl;
+                }
+                else
+                {
+                    std::cout<<"Invalid input ?"<<std::endl;
+                    deposite(acc);
+                }
+                
+            }
+        }
+        
+    }
+    void withdraw(std::vector<Account>& acc)
+    {
+        float with;
+         int n;
+        std::cout<<"Enter account number : "<<std::endl;
+        std::cin>>n;
+        std::cout<<"Enter the amount : "<<std::endl;
+        std::cin>>with;
+        for(int i=0;i<acc.size();i++)
+        {
+            if(acc[i].ac_no==n)
+            {
+                if(with>0)
+                {
+                    if(acc[i].balance>=with)
+                    {
+                        acc[i].balance=acc[i].balance-with;
+                        std::cout<<with<<"has been debited successfully"<<std::endl;
+                    }
+                    else
+                    {
+                        std::cout<<"Insufficient balance"<<std::endl;
+                        withdraw(acc);
+                    }
+                }
+                else
+                {
+                    std::cout<<"Invalid input"<<std::endl;
+                    withdraw(acc);
+                }
+            }
+        }
+
+    }
+    void menu(std::vector<Account>& acc,Account a)
+    {
+        
+        int choice;
+        do{
+            std::cout<<"1.Create account "<<std::endl;
+            std::cout<<"2.Deposit"<<std::endl;
+            std::cout<<"3.Withdraw"<<std::endl;
+            std::cout<<"4.Display a account with account number"<<std::endl;
+            std::cout<<"5.Show All accounts"<<std::endl;
+            std::cout<<"6.Transfer to other account"<<std::endl;
+            std::cout<<"7.Exit"<<std::endl;
+            std::cout<<"Your choice : ";
+            std::cin>>choice;
+            switch (choice)
+            {
+            case 1:
+                a.create(acc,a);
+                break;
+            case 2:
+                a.deposite(acc);
+                break;
+            case 3:
+                a.withdraw(acc);
+                break;
+            case 4:
+                a.display(acc);
+                break;
+            case 5:
+                a.alldis(acc);
+                break;  
+            case 6:
+                a.transfer(acc);
+                break;         
+            }
+        }while(choice!=7);
+        std::cout<<"----------Thank--You---------------"<<std::endl;
+    }
+    void alldis(std::vector<Account>& acc)
+    {
+        
+        std::cout<<"-------------------------YK--Bank--------------------------"<<std::endl;
+        for(int i = 0;i<acc.size();i++)
+        {
+            std::cout<<"Name : "<<acc[i].name<<std::endl
+            <<"Account number : "<<acc[i].ac_no<<std::endl
+            <<"Balance : "<<acc[i].balance<<std::endl
+            <<"____________________________________________________________"<<std::endl;
+
+        }
+    }
+    
+    void updatedetails(std::vector<Account>& acc)       //Future updation
+    {
+        int n;
+        std::cout<<"Enter the account number : "<<std::endl;
+        std::cin>>n;
+        for(int i =0;i<acc.size();i++)
+        {
+            if(acc[i].ac_no==n)
+            {
+                int p;
+                
+                std::cout<<"1.To update name"<<std::endl<<"2.To update pin"<<std::endl;
+                std::cin>>p;
+                switch (p)
+                {
+                case 1:
+                    /* code */
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }
+    void transfer(std::vector<Account>& acc)
+
+    {
+        int transfr,transto;
+        float amount;
+        std::cout<<"Enter the account number of transfer from : "<<std::endl;
+        std::cin>>transfr;
+        std::cout<<"Enter account number of transfer to : "<<std::endl;
+        std::cin>>transto;
+        std::cout<<"Amount to be transfered : "<<std::endl;
+        std::cin>>amount;
+        if(transfr!=transto)
+        {
+            for(int i = 0;i<acc.size();i++)
+            {
+                if(acc[i].ac_no==transfr)
+                {
+                    acc[i].balance=acc[i].balance-amount;
+                    std::cout<<"Transaction Done !"<<std::endl;
+                }
+                else if(acc[i].ac_no==transto)
+                {
+                    acc[i].balance=acc[i].balance+amount;
+                    std::cout<<"Transaction Done !"<<std::endl;
+                }
+                else
+                {
+                    std::cout<<"Account not found !"<<std::endl;
+                    transfer(acc);
+                }
+            }
+        }
+        else
+        {
+            std::cout<<"invalid input !"<<std::endl;
+            transfer(acc);
+        }
+    }
+
+};
+int main()
+{
+    std::vector<Account> acc;
+    Account a;
+    a.menu(acc,a);
+    return 0;
+}
