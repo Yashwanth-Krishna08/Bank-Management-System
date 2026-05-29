@@ -23,7 +23,7 @@ class Bank
         std::ofstream fout("ac.txt",std::ios::app);
         std::cout<<"Enter your account number : "<<std::endl;
         std::cin>>a.ac_no;
-        for(int i =0 ;i>acc.size();i++)
+        for(int i =0 ;i<acc.size();i++)
         {
             if(acc[i].ac_no==a.ac_no)
             {
