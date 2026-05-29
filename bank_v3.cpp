@@ -310,7 +310,7 @@ class Bank
             {
                 if(acc[i].pass==password)
                 {
-                    currentindex==i;
+                    currentindex=i;
                     menuser();
                 }
                 else
