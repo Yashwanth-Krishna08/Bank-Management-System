@@ -1,216 +1,161 @@
-# 🏦 Bank Management System in C++
+# 🏦 Bank Management System (C++)
 
-A console-based **Bank Management System** developed using **C++**, demonstrating real-world banking operations using **Object-Oriented Programming (OOP)** concepts, **STL vectors**, and **file handling**.
+A console-based **Bank Management System** built using **C++**, **Object-Oriented Programming (OOP)**, **STL**, and **File Handling**. This project simulates the core functionalities of a banking application, including account creation, authentication, transactions, and persistent data storage.
 
-The system supports both **Admin** and **User** functionalities, allowing secure account management, transactions, authentication, and persistent data storage.
+## 🚀 Features
 
-This project was built to practice practical software development concepts and simulate the core functionality of a basic banking application.
+### 👤 User Module
 
----
+* Create a new bank account
+* Secure login using account number and PIN
+* Deposit money
+* Withdraw money
+* Transfer money to another account
+* View account details
+* View transaction history
+* Persistent account and transaction storage using files
 
-# ✨ Features
+### 👨‍💼 Admin Module
 
-## 👤 User Features
-- 🔐 User Login System
-- 💰 Deposit Money
-- 💸 Withdraw Money
-- 🔄 Transfer Money to Other Accounts
-- 📋 View Personal Account Details
-
----
-
-## 🛠️ Admin Features
-- 🏦 Create New Bank Accounts
-- 🔍 Search Account Using Account Number
-- 📑 Display All Accounts
-- 💰 Deposit to Any Account
-- 💸 Withdraw from Any Account
-- 🔄 Transfer Between Accounts
-- 🧠 Manage Multiple Accounts Dynamically
+* Secure admin login
+* Create customer accounts
+* Deposit money into any account
+* Withdraw money from any account
+* Transfer funds between accounts
+* Update customer details
+* Display individual account information
+* Display all customer accounts
 
 ---
 
-# 🧩 Core Concepts Used
+## 🛠️ Technologies Used
 
-- Object-Oriented Programming (OOP)
-- Classes and Friend Classes
-- Encapsulation
-- STL Vector
-- File Handling (`fstream`)
-- Authentication System
-- Record Management
-- Menu-Driven Programming
-- Banking Transaction Logic
+* **Language:** C++
+* **Concepts:** Object-Oriented Programming (OOP)
+* **STL Containers:**
 
----
-
-# 💾 Data Persistence
-
-The project uses file handling to permanently store account data inside:
-
-```text
-ac.txt
-```
-
-Account information is automatically:
-- Loaded when the program starts
-- Updated when the program exits
-
-This allows account data to persist even after closing the application.
+  * `vector`
+  * `stack`
+* **File Handling**
+* **Classes & Objects**
+* **Constructors**
+* **Friend Classes**
+* **Input Validation**
+* **Menu-Driven Programming**
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
-```text
-Bank-Management-System/
-│
-├── bank.cpp          # Complete banking system implementation
-├── ac.txt            # Stores account records permanently
-└── README.md         # Project documentation
-```
+### Account Class
 
----
+Stores customer information:
 
-# 🚀 How to Run
+* Account Number
+* Name
+* Balance
+* Security PIN
 
-## 📌 Prerequisites
-- C++ Compiler (g++, clang++, MinGW, etc.)
+### Transaction Class
 
----
+Stores transaction details:
 
-## ⚙️ Compile the Program
+* Transaction Type
+* Amount
 
-```bash
-g++ bank.cpp -o bank
-```
+### Bank Class
 
----
+Handles all banking operations:
 
-## ▶️ Run the Program
-
-### Linux / Mac
-```bash
-./bank
-```
-
-### Windows
-```bash
-bank.exe
-```
+* Account creation
+* Authentication
+* Deposit
+* Withdrawal
+* Fund transfer
+* Transaction history
+* File operations
+* Account management
 
 ---
 
-# 🔐 Authentication System
+## 💾 Data Storage
 
-## 👤 User Login
-Users can log in using:
-- Account Number
-- Security PIN
+The project stores data using text files.
 
----
+### Account File
 
-## 🛡️ Admin Login
-Admin access is protected using a password system.
+Stores:
 
-Admin functionalities include:
-- Creating accounts
-- Managing all accounts
-- Viewing account records
-- Performing transactions
+* Customer Name
+* Account Number
+* Balance
+* Security PIN
 
----
+### Transaction History
 
-# 🧑‍💻 Functionalities
-
-## 🏦 Account Creation
-Create multiple accounts with:
-- Account Number
-- Name
-- Initial Balance
-- Security PIN
+Each account has its own transaction history file, allowing users to view previous deposits, withdrawals, and transfers.
 
 ---
 
-## 💰 Deposit System
-Deposit money into accounts with validation for invalid amounts.
+## 📚 Concepts Practiced
+
+This project helped me practice:
+
+* Object-Oriented Programming
+* STL (`vector`, `stack`)
+* File Handling
+* Data Validation
+* Function Decomposition
+* Class Design
+* Menu-Driven Applications
+* Basic Banking Logic
 
 ---
 
-## 💸 Withdrawal System
-Withdraw money while checking:
-- Valid amount
-- Sufficient balance
+## ▶️ How to Run
+
+1. Clone the repository.
+2. Open the project in your preferred C++ IDE (VS Code, Code::Blocks, Visual Studio, etc.).
+3. Compile using a C++17 (or later) compatible compiler.
+4. Run the executable.
 
 ---
 
-## 🔄 Money Transfer
-Transfer money securely between accounts.
+## 🔮 Future Improvements
+
+* Replace `vector` with `map` for faster account lookup.
+* Use `unordered_map` for even faster average search performance.
+* Encrypt account passwords/PINs.
+* Generate unique account numbers automatically.
+* Add transaction timestamps.
+* Add interest calculation.
+* Add loan management.
+* Improve file format using binary or structured storage.
+* Build a GUI version using Qt.
+* Connect the application to a SQL database.
 
 ---
 
-## 🔍 Account Search
-Search and display accounts using account numbers.
+## 🎯 Learning Outcome
+
+This project strengthened my understanding of:
+
+* C++ programming
+* STL containers
+* OOP principles
+* File handling
+* Problem solving
+* Software design
+* Building larger console applications
 
 ---
 
-## 📋 Display All Accounts
-View all stored accounts and balances.
+## 👨‍💻 Author
+
+**Yashwanth Krishna**
+
+Aspiring Software Engineer | C++ Developer | Game Development Enthusiast
 
 ---
 
-# 🛡️ Validations & Safety Rules
-
-- ❌ Cannot withdraw more than available balance
-- ❌ Negative amounts are rejected
-- ❌ Invalid transfers are prevented
-- ❌ Same-account transfer is not allowed
-- ❌ Unauthorized login access is denied
-- ✅ Secure account-based operations
-
----
-
-# 🧠 Learning Outcomes
-
-This project helped in understanding:
-
-- Practical implementation of OOP in C++
-- File handling and persistent storage
-- User authentication systems
-- Managing collections of objects using STL vectors
-- Building menu-driven applications
-- Designing banking transaction systems
-- Real-world software logic and modular design
-
----
-
-# 🔮 Future Improvements
-
-- 🔒 Password Encryption
-- 📜 Transaction History
-- ✏️ Update Account Details
-- 🗑️ Delete Account Feature
-- 📊 Sorting Accounts by Balance or Name
-- 📅 Account Statements
-- 🖥️ GUI-Based Banking Application
-- 🌐 Database Integration
-- ☁️ Cloud Storage Support
-
----
-
-# 🤝 Contributing
-
-Contributions and improvements are welcome!  
-Feel free to fork this project and enhance it.
-
----
-
-# 📄 License
-
-This project is created for educational and learning purposes.
-
----
-
-# ⭐ Support
-
-If you found this project useful, consider giving it a ⭐ on GitHub!
+⭐ If you found this project interesting, consider giving the repository a star!
