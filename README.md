@@ -1,161 +1,282 @@
 # 🏦 Bank Management System (C++)
 
-A console-based **Bank Management System** built using **C++**, **Object-Oriented Programming (OOP)**, **STL**, and **File Handling**. This project simulates the core functionalities of a banking application, including account creation, authentication, transactions, and persistent data storage.
+A console-based **Bank Management System** developed in **C++** using **Object-Oriented Programming (OOP)**, **STL (`unordered_map`, `stack`)**, and **File Handling**.
 
-## 🚀 Features
-
-### 👤 User Module
-
-* Create a new bank account
-* Secure login using account number and PIN
-* Deposit money
-* Withdraw money
-* Transfer money to another account
-* View account details
-* View transaction history
-* Persistent account and transaction storage using files
-
-### 👨‍💼 Admin Module
-
-* Secure admin login
-* Create customer accounts
-* Deposit money into any account
-* Withdraw money from any account
-* Transfer funds between accounts
-* Update customer details
-* Display individual account information
-* Display all customer accounts
+This project simulates core banking operations with separate **User** and **Admin** modules. It provides secure account management, persistent data storage, and transaction history tracking while demonstrating practical applications of C++ programming concepts.
 
 ---
 
-## 🛠️ Technologies Used
+# ✨ Features
+
+## 👤 User Module
+
+* User Registration (Sign Up)
+* Secure Login with PIN
+* Deposit Money
+* Withdraw Money
+* Transfer Money to Another Account
+* View Account Details
+* View Transaction History
+
+---
+
+## 👨‍💼 Admin Module
+
+* Admin Login
+* Create New Accounts
+* Deposit to Any Account
+* Withdraw from Any Account
+* Transfer Between Accounts
+* View Individual Account Details
+* View All Accounts
+* Update Customer Name
+
+---
+
+# 📚 Concepts Used
+
+* Object-Oriented Programming (OOP)
+* Classes & Objects
+* Friend Classes
+* Constructors
+* Encapsulation
+* File Handling
+* STL Containers
+* Hash Tables
+* Stack
+* Menu-Driven Programming
+* Input Validation
+
+---
+
+# 🛠️ Technologies
 
 * **Language:** C++
-* **Concepts:** Object-Oriented Programming (OOP)
-* **STL Containers:**
+* **Standard Library (STL):**
 
-  * `vector`
+  * `unordered_map`
   * `stack`
-* **File Handling**
-* **Classes & Objects**
-* **Constructors**
-* **Friend Classes**
-* **Input Validation**
-* **Menu-Driven Programming**
+* File Handling (`fstream`)
+* Console Application
 
 ---
 
-## 📂 Project Structure
+# 📂 Data Structures Used
 
-### Account Class
+## `unordered_map<int, Account>`
 
-Stores customer information:
+Stores all bank accounts.
 
-* Account Number
-* Name
-* Balance
-* Security PIN
+* **Key:** Account Number
+* **Value:** Account Object
 
-### Transaction Class
+### Why `unordered_map`?
 
-Stores transaction details:
+* Average **O(1)** search
+* Fast insertion
+* Fast updates
+* Efficient account retrieval
 
-* Transaction Type
-* Amount
+---
 
-### Bank Class
+## `stack<Transaction>`
 
-Handles all banking operations:
+Maintains transaction history for the currently logged-in user.
 
-* Account creation
-* Authentication
+It stores:
+
 * Deposit
 * Withdrawal
-* Fund transfer
-* Transaction history
-* File operations
-* Account management
+* Transfer
+
+Transactions are displayed in **Last-In, First-Out (LIFO)** order.
 
 ---
 
-## 💾 Data Storage
+# 💾 File Storage
 
-The project stores data using text files.
+The project stores data permanently using text files.
 
-### Account File
+### Account Database
+
+```text
+acc.txt
+```
 
 Stores:
 
-* Customer Name
+* Name
 * Account Number
 * Balance
-* Security PIN
+* PIN
+
+---
 
 ### Transaction History
 
-Each account has its own transaction history file, allowing users to view previous deposits, withdrawals, and transfers.
+Each account has its own transaction history file.
+
+Example:
+
+```text
+1001.txt
+1002.txt
+1003.txt
+```
+
+Each file stores:
+
+* Transaction Type
+* Transaction Amount
 
 ---
 
-## 📚 Concepts Practiced
+# 📋 Project Structure
 
-This project helped me practice:
-
-* Object-Oriented Programming
-* STL (`vector`, `stack`)
-* File Handling
-* Data Validation
-* Function Decomposition
-* Class Design
-* Menu-Driven Applications
-* Basic Banking Logic
+```text
+Bank-Management-System/
+│
+├── main.cpp
+├── README.md
+```
 
 ---
 
-## ▶️ How to Run
+# 🚀 Functionalities
 
-1. Clone the repository.
-2. Open the project in your preferred C++ IDE (VS Code, Code::Blocks, Visual Studio, etc.).
-3. Compile using a C++17 (or later) compatible compiler.
-4. Run the executable.
+### Account Management
 
----
+* Create Account
+* Login Authentication
+* Update Customer Name
 
-## 🔮 Future Improvements
+### Banking Operations
 
-* Replace `vector` with `map` for faster account lookup.
-* Use `unordered_map` for even faster average search performance.
-* Encrypt account passwords/PINs.
-* Generate unique account numbers automatically.
-* Add transaction timestamps.
-* Add interest calculation.
-* Add loan management.
-* Improve file format using binary or structured storage.
-* Build a GUI version using Qt.
-* Connect the application to a SQL database.
+* Deposit Money
+* Withdraw Money
+* Transfer Funds
 
----
+### Information
 
-## 🎯 Learning Outcome
+* Display Own Account
+* Display Any Account (Admin)
+* Display All Accounts (Admin)
+* Display Transaction History
 
-This project strengthened my understanding of:
+### Storage
 
-* C++ programming
-* STL containers
-* OOP principles
-* File handling
-* Problem solving
-* Software design
-* Building larger console applications
+* Load data from file
+* Save updated records
+* Maintain transaction history
 
 ---
 
-## 👨‍💻 Author
+# ▶️ How to Run
+
+### Clone the repository
+
+```bash
+git clone https://github.com/your-username/Bank-Management-System.git
+```
+
+### Compile
+
+```bash
+g++ main.cpp -std=c++17 -o BankSystem
+```
+
+### Run
+
+Windows
+
+```bash
+BankSystem.exe
+```
+
+Linux/macOS
+
+```bash
+./BankSystem
+```
+
+---
+
+# 📖 Sample Menu
+
+```text
+1. User Sign Up
+2. User Sign In
+3. Admin Sign In
+```
+
+### User Menu
+
+```text
+1. Deposit
+2. Withdraw
+3. Transfer
+4. Display Account Details
+5. Display Transaction History
+6. Exit
+```
+
+### Admin Menu
+
+```text
+1. Create Account
+2. Deposit
+3. Withdraw
+4. Display Account
+5. Show All Accounts
+6. Transfer
+7. Update Details
+8. Exit
+```
+
+---
+
+# 🎯 Learning Outcomes
+
+This project helped me gain practical experience with:
+
+* Designing object-oriented applications
+* Using STL containers in real-world scenarios
+* Efficient data storage using `unordered_map`
+* Implementing transaction history using `stack`
+* Managing persistent data with file handling
+* Building menu-driven console applications
+* Structuring larger C++ projects
+
+---
+
+# 🔮 Future Improvements
+
+* Password hashing for secure authentication
+* PIN update functionality
+* Account deletion
+* Transaction timestamps
+* Transaction receipts
+* Interest calculation
+* Loan management
+* Better input validation
+* Exception handling
+* Binary file storage
+* Qt/QML graphical user interface
+* Database integration (SQLite/MySQL)
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
 
 **Yashwanth Krishna**
 
-Aspiring Software Engineer | C++ Developer | Game Development Enthusiast
-
----
-
-⭐ If you found this project interesting, consider giving the repository a star!
+* 💻 C++ Developer
+* 📚 Learning STL & Data Structures
+* 🎮 Aspiring Game Developer
+* 🚀 Passionate about Software Development and Creative Programming
