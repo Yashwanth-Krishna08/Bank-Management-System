@@ -266,11 +266,6 @@ This project helped me gain practical experience with:
 
 ---
 
-# 📜 License
-
-This project is licensed under the MIT License.
-
----
 
 # 👨‍💻 Author
 
