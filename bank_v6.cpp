@@ -7,32 +7,71 @@
 #include<algorithm>
 class Account 
 {
-    friend class Bank;
+    //friend class Bank;
     private:
     int ac_no;
     std::string name,pass;
     float balance;
     public:
-    Account()
-    {
-
-    }
+    Account() : ac_no(0), balance(0) {}
     Account(int ac,std::string name,float bal,std::string pass)
         :ac_no(ac),name(name),balance(bal),pass(pass)
     {
+    }
+    std::string getname() const
+    {
+        return name;
+    }
+    int getacno() const
+    {
+        return ac_no;
+    }
+    float getbal() const
+    {
+        return balance;
+    }
+    std::string getpass() const
+    {
+        return pass;
+    }
+    void setname(std::string newname)
+    {
+        name=newname;
+    }
+    bool adbal(float amount)
+    {
+        if(amount<=0)
+        {
+            return false;
+        }
+        balance+=amount;
+        return true;
+    }
+    bool subal(float amount)
+    {
+        if(balance>=amount && amount>0)
+        {
+            balance-=amount;
+            return true;
+        }
+        return false;
     }
 };
 class transaction
 {
     friend class Bank;
     private:
+    int transactionid,reac,sendac;
     float amount;
     std::string type; 
     public:
-    transaction(std::string type,float amount)
-    :type(type),amount(amount)
+   /* transaction(std::string type,int sendac,int reac,float amount)
+    :transactionid(transactionid),type(type),sendac(sendac),reac(reac),amount(amount)
     {   
-    }
+    }*/
+    transaction(std::string type,float amount):
+    transactionid(transactionid),type(type),amount(amount)
+    {}
     transaction()
     {}        
 };
@@ -49,18 +88,36 @@ class Bank
         int ac;
         std::string pass,name;
         float balance;
-        std::ofstream fout("ac.txt",std::ios::app);
+        std::ofstream fout("acc.txt",std::ios::app);
         ac=acvalid();
         std::cin.ignore();
         std::cout<<"Enter your name : "<<std::endl;
         getline(std::cin,name);
-        balance=validamountfordepo();
+        balance=setbal();
         std::cout<<"Enter your security pin (you can change later):"<<std::endl;
         std::cin>>pass;
         Account a(ac,name,balance,pass);
         accounts[ac]=a;
-        fout<<a.name<<"  "<<a.ac_no<<"  "<<a.balance<<"  "<<a.pass<<std::endl;
+        fout<<a.getname()<<"  "<<a.getacno()<<"  "<<a.getbal()<<"  "<<a.getpass()<<std::endl;
         fout.close();
+    }
+    float setbal()
+    {
+        float amount;
+        do
+        {
+           std::cout<<"Enter the amount to be deposited : ";
+           std::cin>>amount;
+           if(amount<0)
+           {
+            std::cout<<"Invalid amount !"<<std::endl;
+           }
+           else
+           {
+            return amount;
+           }
+        } while (amount<0);
+        
     }
     int acvalid()
     {
@@ -85,24 +142,48 @@ class Bank
     {
         std::cout<<"-------------------------YK--Bank--------------------------"<<std::endl;
         int ac =getac();
-        std::cout<<"Name : "<<accounts[ac].name<<std::endl
-        <<"Account number : "<<accounts[ac].ac_no<<std::endl
-        <<"balance : "<<accounts[ac].balance<<std::endl
+        std::cout<<"Name : "<<accounts[ac].getname()<<std::endl
+        <<"Account number : "<<accounts[ac].getacno()<<std::endl
+        <<"balance : "<<accounts[ac].getbal()<<std::endl
         <<"------------------------------------"<<std::endl;
     }
     void depositead()
     {
-        float depo=validamountfordepo();
         int i =getac();
-        accounts[i].balance=accounts[i].balance+depo;
-        std::cout<<depo<<" has been credited successfully"<<std::endl;
+        float depo;
+        while(true)
+        {
+            std::cout<<"Enter amount to be deposited : ";
+            std::cin>>depo;
+            if(accounts[i].adbal(depo))
+            {
+                std::cout<<depo<<" has been credited successfully"<<std::endl;
+                break;
+            }
+            else
+            {
+                std::cout<<"Invalid amount !"<<std::endl;
+            }
+        }
     }
     void withdrawad()
     {
         int i =getac();
-        float with=validamountadmin(i);
-        accounts[i].balance=accounts[i].balance-with;
-        std::cout<<with<<"has been debited successfully"<<std::endl;
+        float with;
+        while (true)
+        {
+            std::cout<<"Enter the amount to be withdrawn : ";
+            std::cin>>with;
+            if(accounts[i].subal(with))
+            {
+                std::cout<<with<<"has been debited successfully"<<std::endl;
+                break;
+            }
+            else
+            {
+                std::cout<<"Insufficient balance ! OR Invalid amount"<<std::endl;
+            }
+        }   
     }
     void menuad()
     {
@@ -152,11 +233,11 @@ class Bank
     {
         
         std::cout<<"-------------------------YK--Bank--------------------------"<<std::endl;
-        for(const auto x:accounts)
+        for(const auto& x:accounts)
         {
-            std::cout<<"Name : "<<x.second.name<<std::endl
+            std::cout<<"Name : "<<x.second.getname()<<std::endl
             <<"Account number : "<<x.first<<std::endl
-            <<"Balance : "<<x.second.balance<<std::endl
+            <<"Balance : "<<x.second.getbal()<<std::endl
             <<"_________________________________________________________________"<<std::endl;
 
         }
@@ -168,11 +249,11 @@ class Bank
         std::cout<<"Enter the new name : "<<std::endl;
         std::string name;
         getline(std::cin,name);
-        accounts[ac_no].name=name;
+        accounts[ac_no].setname(name);
         std::cout<<"-------------------YK---Bank-------------------------"<<std::endl;
-        std::cout<<"Name : "<<accounts[ac_no].name<<std::endl;
-        std::cout<<"Account number : "<<accounts[ac_no].ac_no<<std::endl;
-        std::cout<<"Balance : "<<accounts[ac_no].balance<<std::endl;
+        std::cout<<"Name : "<<accounts[ac_no].getname()<<std::endl;
+        std::cout<<"Account number : "<<accounts[ac_no].getacno()<<std::endl;
+        std::cout<<"Balance : "<<accounts[ac_no].getbal()<<std::endl;
         std::cout<<"______________________________________________________________________"<<std::endl;
     }
     void updatedetails()       //Future updation
@@ -201,18 +282,24 @@ class Bank
         int transfr=getac();
         std::cout<<"------Transfer---To----------"<<std::endl;
         int transto=getac();
-        float amount=validamountadmin(transfr);
+        float amount;
         if(transfr!=transto)
         {
-            if(accounts[transfr].ac_no==transfr)
+            std::cout<<"Enter the amount to be transfered : ";
+            std::cin>>amount;
+            if(accounts[transfr].subal(amount)&&accounts[transto].adbal(amount))
+            {
+                std::cout<<"Transaction Done ! "<<std::endl;
+            }
+            /*if(accounts[transfr].getacno()==transfr)
             {
                 accounts[transfr].balance=accounts[transfr].balance-amount;
             }
-            if(accounts[transto].ac_no==transto)
+            if(accounts[transto].getacno()==transto)
             {
                 accounts[transto].balance=accounts[transto].balance+amount;
                 std::cout<<"Transaction Done !"<<std::endl;
-            }             
+            }*/             
         }
         else
         {
@@ -223,20 +310,23 @@ class Bank
     }
     void loadfromfile()
     {
-        Account a;
-        accounts.clear();
+        std::string name , pass;
+        int acno;
+        float bal;
         std::ifstream fin("acc.txt");
-        while(fin>>a.name>>a.ac_no>>a.balance>>a.pass)
+        while(fin>>name>>acno>>bal>>pass)
         {
-            accounts[a.ac_no]=a;
+            Account a(acno,name,bal,pass);
+            accounts[acno]=a;
         }
+        fin.close();
     }
     void rewritefile()
     {
         std::ofstream fout("acc.txt");
         for(const auto& x:accounts)
         {
-            fout<<x.second.name<<"  "<<x.second.ac_no<<"  "<<x.second.balance<<"  "<<x.second.pass<<std::endl;
+            fout<<x.second.getname()<<"  "<<x.second.getacno()<<"  "<<x.second.getbal()<<"  "<<x.second.getpass()<<std::endl;
         }
         fout.close();
     }
@@ -294,7 +384,7 @@ class Bank
         std::string password;
         std::cout<<"Enter your security pin : "<<std::endl;
         std::cin>>password;
-        if(accounts[ac].pass==password)
+        if(accounts[ac].getpass()==password)
         {
             currentindex=ac;
             menuser();
@@ -347,11 +437,23 @@ class Bank
         if(accounts.find(currentindex)!=accounts.end())
         {
             isdepo=1;
-            float amount=validamountfordepo();
-            accounts[currentindex].balance+=amount;
-            historyinput(amount);
-            std::cout<<amount<<"  has been credited successfully"<<std::endl;
-            std::cout<<"Your account balance is : "<<accounts[currentindex].balance<<std::endl;
+            float amount;
+            while(true)
+            {
+                std::cout<<"Enter the amount : "<<std::endl;
+                std::cin>>amount;
+                if(accounts[currentindex].adbal(amount))
+                {
+                    historyinput(amount);
+                    std::cout<<amount<<"  has been credited successfully"<<std::endl;
+                    std::cout<<"Your account balance is : "<<accounts[currentindex].getbal()<<std::endl;
+                    break;
+                }
+                else
+                {
+                    std::cout<<"Invalid amount"<<std::endl;
+                }
+            }
         }
         else
         {
@@ -365,12 +467,23 @@ class Bank
         if(accounts.find(currentindex)!=accounts.end())
         {
             isdepo=2;
-            float amount=validamountuser();
-            accounts[currentindex].balance-=amount;
-            historyinput(amount);
-            std::cout<<amount<<" has been debited successfully"<<std::endl;
-            std::cout<<"Your account balance is : "<<accounts[currentindex].balance<<std::endl;
-            
+            float amount;
+            while(true)
+            {
+                std::cout<<"Enter the amount : "<<std::endl;
+                std::cin>>amount;
+                if(accounts[currentindex].subal(amount))
+                {
+                    historyinput(amount);
+                    std::cout<<amount<<" has been debited successfully"<<std::endl;
+                    std::cout<<"Your account balance is : "<<accounts[currentindex].getbal()<<std::endl;
+                    break;
+                }
+                else
+                {
+                    std::cout<<"Insufficient balance ! OR Invalid amount"<<std::endl;
+                }
+            }
         }
         else
         {
@@ -381,16 +494,35 @@ class Bank
     void transferuser()
     {
         int tranto=getac();
-        float amount=validamountuser();
-        if(accounts[currentindex].ac_no!=tranto)
+        if(accounts[currentindex].getacno()!=tranto)
         {
-            accounts[currentindex].balance-=amount;
-            accounts[tranto].balance+=amount;
             isdepo=3;
-            historyinput(amount);
-            std::cout<<amount<<" has been transfered successfully"<<std::endl;
-            std::cout<<"Your account balance is : "<<accounts[currentindex].balance;
-       
+            float amount;
+            while(true)
+            {
+                std::cout<<"Enter the amount : "<<std::endl;
+                std::cin>>amount;
+                if(accounts[currentindex].subal(amount))
+                {
+                    
+                    if(accounts[tranto].adbal(amount))
+                    {
+                        historyinput(amount);
+                        std::cout<<amount<<" has been transfered successfully"<<std::endl;
+                        std::cout<<"Your account balance is : "<<accounts[currentindex].getbal();
+                        break;
+                    }
+                    else
+                    {
+                        accounts[currentindex].adbal(amount);
+                    }
+                }
+                else
+                {
+
+                    std::cout<<"Insufficient balance ! OR Invalid amount"<<std::endl;
+                }
+            }
         }
         else
         {
@@ -400,59 +532,12 @@ class Bank
     void displaymy()
     {
         std::cout<<"-------------------------YK--Bank--------------------------"<<std::endl;
-        std::cout<<"Name : "<<accounts[currentindex].name<<std::endl
-        <<"Account number : "<<accounts[currentindex].ac_no<<std::endl
-        <<"balance : "<<accounts[currentindex].balance<<std::endl
+        std::cout<<"Name : "<<accounts[currentindex].getname()<<std::endl
+        <<"Account number : "<<accounts[currentindex].getacno()<<std::endl
+        <<"balance : "<<accounts[currentindex].getbal()<<std::endl
         <<"------------------------------------"<<std::endl;
     }
-    float validamountuser()
-    {
-        float amount;
-        do{
-            std::cout<<"Enter the amount : "<<std::endl;
-            std::cin>>amount;
-            if(amount<=0)
-            {
-                std::cout<<"Invalid amount !"<<std::endl;
-            }
-            else if(accounts[currentindex].balance<amount)
-            {
-                std::cout<<"Insufficient balance ! "<<std::endl;
-            }
-        }while(amount<=0||accounts[currentindex].balance<amount);
-        return amount;
-    }
-    float validamountfordepo()
-    {
-        float amount;
-        do{
-            std::cout<<"Enter the amount to be deposited : "<<std::endl;
-            std::cin>>amount;
-            if(amount<=0)
-            {
-                std::cout<<"Invalid input !"<<std::endl;
-            } 
-        }while(amount<=0);
-        return amount;
-    }
-    float validamountadmin(int n)
-    {
-        float amount;
-        int pos=n;
-        do{
-            std::cout<<"Enter the amount :"<<std::endl;
-            std::cin>>amount;
-            if(amount<=0)
-            {
-                std::cout<<"Invalid input !"<<std::endl;
-            }
-            else if(accounts[pos].balance<amount)
-            {
-                std::cout<<"Insufficient balance !"<<std::endl;
-            }
-        }while(amount<=0||accounts[pos].balance<amount);
-        return amount;
-    }
+
     int getac()
     {
         bool found;
@@ -472,10 +557,10 @@ class Bank
         }while(!found);
         return ac;
     }
-    void historyinput(int amount)
+    void historyinput(float amount)
     {
         transaction t;
-        std::string filename=std::to_string(accounts[currentindex].ac_no);
+        std::string filename=std::to_string(accounts[currentindex].getacno());
         filename.append(".txt");
         std::ofstream fout(filename,std::ios::app);
         switch (isdepo)
@@ -502,7 +587,7 @@ class Bank
     }
     void loadfromhistory()
     {
-        std::string filename=std::to_string(accounts[currentindex].ac_no);
+        std::string filename=std::to_string(accounts[currentindex].getacno());
         filename.append(".txt");
         std::ifstream fin(filename);
         std::string type;
