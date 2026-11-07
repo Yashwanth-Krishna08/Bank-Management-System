@@ -1,277 +1,118 @@
-# 🏦 Bank Management System (C++)
+# Bank Management System
 
-A console-based **Bank Management System** developed in **C++** using **Object-Oriented Programming (OOP)**, **STL (`unordered_map`, `stack`)**, and **File Handling**.
+A console-based Bank Management System developed using **C++**, focusing on Object-Oriented Programming, STL, file handling, and transaction management.
 
-This project simulates core banking operations with separate **User** and **Admin** modules. It provides secure account management, persistent data storage, and transaction history tracking while demonstrating practical applications of C++ programming concepts.
+This project is an ongoing learning project where I'm exploring software development concepts by building and improving a practical application.
 
----
+## Features
 
-# ✨ Features
+- **Account Management**
+  - Create new bank accounts.
+  - User login with account number and security PIN.
+  - Update account details.
+  - Display individual and all account details.
 
-## 👤 User Module
+- **Banking Operations**
+  - Deposit money.
+  - Withdraw money with balance validation.
+  - Transfer money between accounts.
+  - Basic rollback mechanism for failed transfers.
 
-* User Registration (Sign Up)
-* Secure Login with PIN
-* Deposit Money
-* Withdraw Money
-* Transfer Money to Another Account
-* View Account Details
-* View Transaction History
+- **Transaction Management**
+  - Maintain transaction history.
+  - Store transaction records in separate text files.
+  - Display previous transactions.
 
----
+- **Data Persistence**
+  - Store account information in text files.
+  - Load account details when the application starts.
+  - Update stored account information when the application exits.
 
-## 👨‍💼 Admin Module
+## Technologies Used
 
-* Admin Login
-* Create New Accounts
-* Deposit to Any Account
-* Withdraw from Any Account
-* Transfer Between Accounts
-* View Individual Account Details
-* View All Accounts
-* Update Customer Name
+- **Language:** C++
+- **Concepts:** OOP, Encapsulation, STL, File Handling
+- **STL Containers:** `unordered_map`, `stack`
+- **Libraries:** iostream, string, fstream, unordered_map, stack
 
----
-
-# 📚 Concepts Used
-
-* Object-Oriented Programming (OOP)
-* Classes & Objects
-* Friend Classes
-* Constructors
-* Encapsulation
-* File Handling
-* STL Containers
-* Hash Tables
-* Stack
-* Menu-Driven Programming
-* Input Validation
-
----
-
-# 🛠️ Technologies
-
-* **Language:** C++
-* **Standard Library (STL):**
-
-  * `unordered_map`
-  * `stack`
-* File Handling (`fstream`)
-* Console Application
-
----
-
-# 📂 Data Structures Used
-
-## `unordered_map<int, Account>`
-
-Stores all bank accounts.
-
-* **Key:** Account Number
-* **Value:** Account Object
-
-### Why `unordered_map`?
-
-* Average **O(1)** search
-* Fast insertion
-* Fast updates
-* Efficient account retrieval
-
----
-
-## `stack<Transaction>`
-
-Maintains transaction history for the currently logged-in user.
-
-It stores:
-
-* Deposit
-* Withdrawal
-* Transfer
-
-Transactions are displayed in **Last-In, First-Out (LIFO)** order.
-
----
-
-# 💾 File Storage
-
-The project stores data permanently using text files.
-
-### Account Database
-
-```text
-acc.txt
-```
-
-Stores:
-
-* Name
-* Account Number
-* Balance
-* PIN
-
----
-
-### Transaction History
-
-Each account has its own transaction history file.
-
-Example:
-
-```text
-1001.txt
-1002.txt
-1003.txt
-```
-
-Each file stores:
-
-* Transaction Type
-* Transaction Amount
-
----
-
-# 📋 Project Structure
+## Project Structure
 
 ```text
 Bank-Management-System/
 │
 ├── main.cpp
-├── README.md
+├── acc.txt
+├── [account_number].txt
+└── README.md
 ```
 
----
+- `main.cpp` – Contains the application logic and class implementations.
+- `acc.txt` – Stores account information.
+- `[account_number].txt` – Stores transaction history for individual accounts.
 
-# 🚀 Functionalities
+## How to Run
 
-### Account Management
-
-* Create Account
-* Login Authentication
-* Update Customer Name
-
-### Banking Operations
-
-* Deposit Money
-* Withdraw Money
-* Transfer Funds
-
-### Information
-
-* Display Own Account
-* Display Any Account (Admin)
-* Display All Accounts (Admin)
-* Display Transaction History
-
-### Storage
-
-* Load data from file
-* Save updated records
-* Maintain transaction history
-
----
-
-# ▶️ How to Run
-
-### Clone the repository
+1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/Bank-Management-System.git
+git clone https://github.com/YOUR_USERNAME/Bank-Management-System.git
 ```
 
-### Compile
+2. Navigate to the project directory:
 
 ```bash
-g++ main.cpp -std=c++17 -o BankSystem
+cd Bank-Management-System
 ```
 
-### Run
-
-Windows
+3. Compile the program:
 
 ```bash
-BankSystem.exe
+g++ -std=c++17 main.cpp -o bank
 ```
 
-Linux/macOS
+4. Run the application:
 
 ```bash
-./BankSystem
+./bank
 ```
 
----
+On Windows:
 
-# 📖 Sample Menu
-
-```text
-1. User Sign Up
-2. User Sign In
-3. Admin Sign In
+```bash
+bank.exe
 ```
 
-### User Menu
+## Concepts Practiced
 
-```text
-1. Deposit
-2. Withdraw
-3. Transfer
-4. Display Account Details
-5. Display Transaction History
-6. Exit
-```
+- Object-Oriented Programming
+- Classes and Objects
+- Encapsulation
+- Constructors and Member Functions
+- STL Containers (`unordered_map`, `stack`)
+- File Input/Output
+- Conditional Statements and Loops
+- Basic Transaction Rollback
 
-### Admin Menu
+## Future Improvements
 
-```text
-1. Create Account
-2. Deposit
-3. Withdraw
-4. Display Account
-5. Show All Accounts
-6. Transfer
-7. Update Details
-8. Exit
-```
+- Improve transaction management with unique transaction IDs and timestamps.
+- Strengthen file handling and error management.
+- Improve input validation.
+- Implement secure password storage.
+- Separate the project into multiple header and source files.
+- Integrate a Qt/QML graphical user interface.
+- Explore database integration using MySQL.
 
----
+## Disclaimer
 
-# 🎯 Learning Outcomes
+This project is developed for educational purposes and is not intended for real-world banking operations. It currently uses basic file-based storage and does not implement production-grade security.
 
-This project helped me gain practical experience with:
-
-* Designing object-oriented applications
-* Using STL containers in real-world scenarios
-* Efficient data storage using `unordered_map`
-* Implementing transaction history using `stack`
-* Managing persistent data with file handling
-* Building menu-driven console applications
-* Structuring larger C++ projects
-
----
-
-# 🔮 Future Improvements
-
-* Password hashing for secure authentication
-* PIN update functionality
-* Account deletion
-* Transaction timestamps
-* Transaction receipts
-* Interest calculation
-* Loan management
-* Better input validation
-* Exception handling
-* Binary file storage
-* Qt/QML graphical user interface
-* Database integration (SQLite/MySQL)
-
----
-
-
-# 👨‍💻 Author
+## Author
 
 **Yashwanth Krishna**
 
-* 💻 C++ Developer
-* 📚 Learning STL & Data Structures
-* 🎮 Aspiring Game Developer
-* 🚀 Passionate about Software Development and Creative Programming
+- GitHub: [Yashwanth-Krishna08](https://github.com/Yashwanth-Krishna08)
+
+---
+
+*Built with C++ while learning and exploring software development.*
