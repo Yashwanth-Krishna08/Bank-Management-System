@@ -1,118 +1,157 @@
 # Bank Management System
 
-A console-based Bank Management System developed using **C++**, focusing on Object-Oriented Programming, STL, file handling, and transaction management.
+A console-based Bank Management System developed using **C++**, demonstrating object-oriented programming, STL, file handling, and modular project architecture.
 
-This project is an ongoing learning project where I'm exploring software development concepts by building and improving a practical application.
+The project provides basic banking operations such as account creation, deposits, withdrawals, fund transfers, and transaction history management. It is designed as a learning project to explore practical C++ software development and improve code organization.
 
 ## Features
 
 - **Account Management**
-  - Create new bank accounts.
-  - User login with account number and security PIN.
-  - Update account details.
-  - Display individual and all account details.
+  - Create new accounts
+  - User authentication
+  - View account details
+  - Update account information
 
 - **Banking Operations**
-  - Deposit money.
-  - Withdraw money with balance validation.
-  - Transfer money between accounts.
-  - Basic rollback mechanism for failed transfers.
+  - Deposit money
+  - Withdraw money
+  - Transfer funds between accounts
+  - Admin-level banking operations
 
 - **Transaction Management**
-  - Maintain transaction history.
-  - Store transaction records in separate text files.
-  - Display previous transactions.
+  - Generate transaction IDs
+  - Maintain individual account transaction histories
+  - Record deposits, withdrawals, and transfers
+  - Track sender and receiver details for transfers
 
 - **Data Persistence**
-  - Store account information in text files.
-  - Load account details when the application starts.
-  - Update stored account information when the application exits.
+  - Store account information using file handling
+  - Maintain transaction records in individual text files
+  - Preserve transaction ID sequences between program executions
 
 ## Technologies Used
 
-- **Language:** C++
-- **Concepts:** OOP, Encapsulation, STL, File Handling
-- **STL Containers:** `unordered_map`, `stack`
-- **Libraries:** iostream, string, fstream, unordered_map, stack
+| Technology | Purpose |
+|---|---|
+| C++17 | Core programming language |
+| OOP | Class-based program design |
+| STL | `unordered_map`, `stack` and other utilities |
+| File Handling | Persistent data storage |
+| CMake | Build configuration and project compilation |
+| Git & GitHub | Version control |
 
 ## Project Structure
 
 ```text
-Bank-Management-System/
+BankManagementSystem/
 │
-├── main.cpp
-├── acc.txt
-├── [account_number].txt
+├── include/
+│   ├── Account.h
+│   ├── Transaction.h
+│   └── Bank.h
+│
+├── src/
+│   ├── Account.cpp
+│   ├── Transaction.cpp
+│   ├── Bank.cpp
+│   └── main.cpp
+│
+├── data/
+│   └── Sample data files
+│
+├── CMakeLists.txt
+├── .gitignore
 └── README.md
 ```
 
-- `main.cpp` – Contains the application logic and class implementations.
-- `acc.txt` – Stores account information.
-- `[account_number].txt` – Stores transaction history for individual accounts.
+### Architecture
 
-## How to Run
+The project follows a modular structure by separating class declarations and implementations.
 
-1. Clone the repository:
+- **Account:** Manages account information and balance-related operations.
+- **Transaction:** Represents transaction details, including transaction IDs, types, amounts, and account references.
+- **Bank:** Coordinates account management, banking operations, transaction history, and file handling.
+- **main.cpp:** Provides the application entry point.
 
-```bash
-git clone https://github.com/YOUR_USERNAME/Bank-Management-System.git
-```
+## Getting Started
 
-2. Navigate to the project directory:
+### Prerequisites
 
-```bash
-cd Bank-Management-System
-```
+Make sure you have the following installed:
 
-3. Compile the program:
+- A C++17-compatible compiler (GCC or MSVC)
+- CMake 3.16 or later
+- Git
 
-```bash
-g++ -std=c++17 main.cpp -o bank
-```
-
-4. Run the application:
+### Clone the Repository
 
 ```bash
-./bank
+git clone <YOUR_REPOSITORY_URL>
+cd BankManagementSystem
 ```
 
-On Windows:
+### Configure the Project
 
 ```bash
-bank.exe
+cmake -S . -B build
 ```
+
+### Build the Project
+
+```bash
+cmake --build build
+```
+
+### Run the Application
+
+**Windows (GCC/MinGW):**
+
+```bash
+.\build\BankManagementSystem.exe
+```
+
+**Linux:**
+
+```bash
+./build/BankManagementSystem
+```
+
+*Note: The executable location may vary depending on the compiler and CMake build configuration.*
 
 ## Concepts Practiced
 
-- Object-Oriented Programming
-- Classes and Objects
-- Encapsulation
-- Constructors and Member Functions
-- STL Containers (`unordered_map`, `stack`)
-- File Input/Output
-- Conditional Statements and Loops
-- Basic Transaction Rollback
+This project has provided practical experience with:
+
+- Object-Oriented Programming and encapsulation
+- Constructors and function overloading
+- STL containers and data structures
+- File input/output operations
+- Multi-file C++ development
+- Header files and source file separation
+- Compilation and linking
+- CMake-based build configuration
+- Basic transaction management and rollback logic
 
 ## Future Improvements
 
-- Improve transaction management with unique transaction IDs and timestamps.
-- Strengthen file handling and error management.
-- Improve input validation.
-- Implement secure password storage.
-- Separate the project into multiple header and source files.
-- Integrate a Qt/QML graphical user interface.
-- Explore database integration using MySQL.
+- Improve input validation and error handling
+- Strengthen transaction consistency and reliability
+- Implement secure password hashing
+- Improve data storage and persistence
+- Introduce a database using MySQL
+- Develop a graphical interface using Qt Quick / QML
+- Refine the application architecture and separate storage responsibilities
 
 ## Disclaimer
 
-This project is developed for educational purposes and is not intended for real-world banking operations. It currently uses basic file-based storage and does not implement production-grade security.
+This project is developed for educational purposes and is not intended for real-world banking or financial transactions. It does not implement the security, auditing, or reliability requirements of production banking systems.
 
 ## Author
 
 **Yashwanth Krishna**
 
-- GitHub: [Yashwanth-Krishna08](https://github.com/Yashwanth-Krishna08)
+- GitHub: [@Yashwanth-Krishna08](https://github.com/Yashwanth-Krishna08)
 
 ---
 
-*Built with C++ while learning and exploring software development.*
+*Built as a practical C++ learning project, with continuous improvements in software design and development.*
