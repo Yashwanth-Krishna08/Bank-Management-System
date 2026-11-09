@@ -1,0 +1,13 @@
+# Build files
+build/
+
+# Executables
+*.exe
+*.out
+
+# IDE files
+.vscode/
+
+# Runtime bank data
+data/*
+!data/.gitkeep
